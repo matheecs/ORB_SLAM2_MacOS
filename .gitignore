@@ -6,6 +6,8 @@ Examples/Monocular/mono_euroc
 Examples/Monocular/mono_tum
 Examples/Monocular/mono_kitti
 Vocabulary/bin_vocabulary
+Vocabulary/ORBvoc.bin
+Vocabulary/ORBvoc.txt
 CameraTrajectory.txt
 KeyFrameTrajectory.txt
 Thirdparty/DBoW2/build/
