@@ -63,9 +63,12 @@ int main(int argc, char **argv)
     cout << "Images in the sequence: " << nImages << endl << endl;   
 
     // Main loop
+    int main_error = 0;
+    std::thread runthread([&]() {  // Start in new thread
     cv::Mat imLeft, imRight;
     for(int ni=0; ni<nImages; ni++)
     {
+    	cout << "Frame " << ni << endl;
         // Read left and right images from file
         imLeft = cv::imread(vstrImageLeft[ni],CV_LOAD_IMAGE_UNCHANGED);
         imRight = cv::imread(vstrImageRight[ni],CV_LOAD_IMAGE_UNCHANGED);
@@ -75,7 +78,8 @@ int main(int argc, char **argv)
         {
             cerr << endl << "Failed to load image at: "
                  << string(vstrImageLeft[ni]) << endl;
-            return 1;
+            main_error = 1;
+            return;
         }
 
 #ifdef COMPILEDWITHC11
@@ -107,9 +111,21 @@ int main(int argc, char **argv)
         if(ttrack<T)
             usleep((T-ttrack)*1e6);
     }
+    // SLAM.Shutdown();
+    }); // End the thread
+
+    // Start the visualization thread
+    SLAM.StartViewer();
+
+    cout << "Viewer started, waiting for thread." << endl;
+    runthread.join();
+    if (main_error != 0)
+        return main_error;
+    cout << "Tracking thread joined..." << endl;
 
     // Stop all threads
     SLAM.Shutdown();
+    cout << "System Shutdown" << endl;
 
     // Tracking time statistics
     sort(vTimesTrack.begin(),vTimesTrack.end());
