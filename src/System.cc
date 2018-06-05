@@ -28,6 +28,11 @@
 
 #include <unistd.h>
 
+bool has_suffix(const std::string &str, const std::string &suffix) {
+    std::size_t index = str.find(suffix, str.size() - suffix.size());
+    return (index != std::string::npos);
+}
+
 namespace ORB_SLAM2
 {
 
@@ -64,7 +69,13 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     cout << endl << "Loading ORB Vocabulary. This could take a while..." << endl;
 
     mpVocabulary = new ORBVocabulary();
-    bool bVocLoad = mpVocabulary->loadFromTextFile(strVocFile);
+    bool bVocLoad = false; // chose loading method based on file extension
+    if (has_suffix(strVocFile, ".txt"))
+        bVocLoad = mpVocabulary->loadFromTextFile(strVocFile);
+    else if(has_suffix(strVocFile, ".bin"))
+        bVocLoad = mpVocabulary->loadFromBinaryFile(strVocFile);
+    else
+        bVocLoad = false;
     if(!bVocLoad)
     {
         cerr << "Wrong path to vocabulary. " << endl;

@@ -5,6 +5,7 @@ Examples/RGB-D/rgbd_tum
 Examples/Monocular/mono_euroc
 Examples/Monocular/mono_tum
 Examples/Monocular/mono_kitti
+Vocabulary/bin_vocabulary
 CameraTrajectory.txt
 KeyFrameTrajectory.txt
 Thirdparty/DBoW2/build/
