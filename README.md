@@ -1,3 +1,10 @@
+# macOS 10.13 + ORB-SLAM2 + MYNT EYE (SDK 1.8)
+How to run:
+  ```
+  ./Examples/Stereo/stereo_mynteye ./Vocabulary/ORBvoc.bin ./Examples/Stereo/cam_stereo.yaml 1
+  ```
+Reference:[slightech/MYNT-EYE-ORB-SLAM2-Sample](https://github.com/slightech/MYNT-EYE-ORB-SLAM2-Sample)
+
 # ORB-SLAM2 - For Mac
 This fork has been modified to be compatible on Mac systems. With required packages installed via Brew, this works out of the box for me.
 
