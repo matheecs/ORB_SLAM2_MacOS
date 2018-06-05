@@ -1,5 +1,6 @@
 Examples/Stereo/stereo_euroc
 Examples/Stereo/stereo_kitti
+Examples/Stereo/stereo_mynteye
 Examples/RGB-D/rgbd_tum
 Examples/Monocular/mono_euroc
 Examples/Monocular/mono_tum
